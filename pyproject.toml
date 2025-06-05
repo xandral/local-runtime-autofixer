@@ -1,0 +1,21 @@
+[project]
+name = "local_runtime_autofixer"
+version = "0.0.1a"
+description = "A package for runtime error fix"
+readme = "readme.md"
+requires-python = ">=3.12"
+dependencies = [
+    "black>=25.1.0",
+    "langchain-anthropic>=0.3.15",
+    "langchain-community>=0.3.24",
+    "langchain-litellm>=0.2.1",
+    "langchain-ollama>=0.3.3",
+    "langchain-openai>=0.3.19",
+    "langgraph>=0.4.8",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-asyncio>=1.0.0",
+]
