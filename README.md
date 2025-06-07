@@ -2,6 +2,8 @@
 
 `LocalIncidentResponder` is a Python library that provides automatic runtime error detection, diagnosis, and correction for functions. It leverages Large Language Models (LLMs) to generate corrective patches and validate them before execution.
 
+**Note:** This library is intended for local testing purposes only and should not be used in production environments due to potential security risks.
+
 ---
 
 ## Key Features
