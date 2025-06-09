@@ -1,5 +1,6 @@
-from example_autofix import faulty
 import asyncio
+
+from example_autofix import faulty
 
 
 def call1():

@@ -9,22 +9,22 @@ INCIDENT_RESPONDER_PROMPT = """
         ## Module in which the function is defined:
         {module_path}
 
-        ## Function docstring 
+        ## Function docstring
         {docstring}
 
         ## Security report (if available):
         {security_report}
-        
+
         ## Generated error
         Type: {error}
         Message: {error_message}
         Traceback:
         {traceback}
-        
+
         ## Inputs that caused the error
         Args: {args}
         Kwargs: {kwargs}
-        
+
         # Application context
         {context}
 
@@ -33,9 +33,9 @@ INCIDENT_RESPONDER_PROMPT = """
 
         ### If in context you don't find the other functions called by the method you are analysing use the tool
             `get_function_details` to get these details Use this code to understand better the context;
-            Use `get_module_objects`  to build in the new code the 
+            Use `get_module_objects`  to build in the new code the
             Your output must be a fixed version of the code passed under ## Function that caused the error
-        
+
         # Task
         Analyze the code and the error or the security report, and provide a corrected version of the function.
         Your response should include:
@@ -48,7 +48,7 @@ INCIDENT_RESPONDER_PROMPT = """
 
 GUARDIAN_PROMPT = """
 
-    You are an AI Security Auditor specialized in Python code. You need to check 2 versions of the same snippet one before (Snippet A) and one after 
+    You are an AI Security Auditor specialized in Python code. You need to check 2 versions of the same snippet one before (Snippet A) and one after
     the relevation of an error or bug (Snippet B). You should check for the sanity of the new code version, the changes should be minimal to fix bug.
 
     Before performing the analysis, apply the following **Security Control Checklist** to Snippet B. For each control, verify and record any deviations under `security_findings`:

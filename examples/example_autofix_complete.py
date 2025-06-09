@@ -1,14 +1,15 @@
+from pydantic import BaseModel
+
 from local_runtime_autofixer.autofixer import LocalIncidentResponder
 from local_runtime_autofixer.utils.incident_handler import BaseIncidentHandler
-from pydantic import BaseModel
 
 incindent_handler = BaseIncidentHandler()
 
 
-import os
 import asyncio
-from local_runtime_autofixer.agents.agents_factory import AgentFactory, ModelProvider
+import os
 
+from local_runtime_autofixer.agents.agents_factory import AgentFactory, ModelProvider
 
 # Configurazione personalizzata degli agenti: aggiungiamo anche un agente "diff" e un agente "extra"
 custom_agent_configs = {

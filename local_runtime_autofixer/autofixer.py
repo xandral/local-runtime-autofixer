@@ -1,20 +1,20 @@
-import functools
-import black
-import traceback
 import asyncio
-import inspect
+import functools
 import importlib
+import inspect
 import logging
+import traceback
+from typing import Any, Callable, Optional, Tuple, Type
 
-from typing import Optional, Type, Callable, Any, Tuple
-
+import black
 from pydantic import BaseModel
-from local_runtime_autofixer.utils.custom_exceptions import IncidentException
+
 from local_runtime_autofixer.agents.agents_factory import AgentFactory
 from local_runtime_autofixer.agents.prompts import (
-    INCIDENT_RESPONDER_PROMPT,
     GUARDIAN_TASK,
+    INCIDENT_RESPONDER_PROMPT,
 )
+from local_runtime_autofixer.utils.custom_exceptions import IncidentException
 from local_runtime_autofixer.utils.incident_handler import BaseIncidentHandler
 from local_runtime_autofixer.utils.miscellaneous import extract_formatted_text
 
@@ -26,7 +26,6 @@ logging.basicConfig(
 
 
 class LocalIncidentResponder:
-
     def __init__(
         self,
         incident_handler: Optional[BaseIncidentHandler] = None,
@@ -147,10 +146,11 @@ class LocalIncidentResponder:
 
                             # 3) If requested, execute the patch in the local environment
                             if run_fixed_code:
-                                fixed_function_output, execution_error = (
-                                    await self._execute_fix_in_current_env(
-                                        fixed_code, func, args, kwargs
-                                    )
+                                (
+                                    fixed_function_output,
+                                    execution_error,
+                                ) = await self._execute_fix_in_current_env(
+                                    fixed_code, func, args, kwargs
                                 )
                                 fix_applied = execution_error is None
                                 if fix_applied:
@@ -160,7 +160,7 @@ class LocalIncidentResponder:
 
                                 # Optionally generate and write a diff file
                                 try:
-                                    with open(module_path, "r") as f_mod:
+                                    with open(module_path) as f_mod:
                                         module_src = f_mod.read()
                                     patched_full = module_src.replace(
                                         incident_dict["source_code"].strip(),
@@ -298,7 +298,6 @@ class LocalIncidentResponder:
         serialized_input_type: str,
         serialized_output_type: str,
     ) -> Tuple[dict, Any]:
-
         tb_str = traceback.format_exc()
 
         module = func.__module__

@@ -1,5 +1,7 @@
-import pytest
 import json
+
+import pytest
+
 from local_runtime_autofixer.utils.miscellaneous import extract_formatted_text
 
 

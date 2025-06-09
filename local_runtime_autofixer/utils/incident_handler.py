@@ -4,10 +4,10 @@ runtime incidents in a project. Subclass this for more advanced integrations
 (e.g., persisting to a database, custom notification systems, or additional behaviors).
 """
 
+import inspect
 import logging
 import uuid
 from datetime import datetime, timezone
-import inspect
 from typing import Any, Optional
 
 from local_runtime_autofixer.utils.models import Incident, IncidentResponse

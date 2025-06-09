@@ -1,6 +1,6 @@
-import pytest
 import logging
-from unittest.mock import MagicMock
+
+import pytest
 
 from local_runtime_autofixer.utils.incident_handler import BaseIncidentHandler
 from local_runtime_autofixer.utils.models import Incident, IncidentResponse

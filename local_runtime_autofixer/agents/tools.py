@@ -1,7 +1,9 @@
-import inspect
 import importlib
-from local_runtime_autofixer.utils.models import FunctionDetail
+import inspect
+
 from langchain_core.tools import tool
+
+from local_runtime_autofixer.utils.models import FunctionDetail
 
 
 @tool

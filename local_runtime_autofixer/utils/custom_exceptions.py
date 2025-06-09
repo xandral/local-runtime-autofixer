@@ -1,5 +1,6 @@
-from local_runtime_autofixer.utils.models import Incident
 from typing import Optional
+
+from local_runtime_autofixer.utils.models import Incident
 
 
 class IncidentException(Exception):

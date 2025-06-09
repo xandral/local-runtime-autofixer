@@ -1,16 +1,15 @@
-import pytest
-
 from typing import Any, Tuple
 
-from local_runtime_autofixer.utils.custom_exceptions import IncidentException
-from local_runtime_autofixer.utils.incident_handler import BaseIncidentHandler
+import pytest
+
 from local_runtime_autofixer.agents.agents_factory import AgentFactory
 from local_runtime_autofixer.agents.prompts import (
     GUARDIAN_TASK,
     INCIDENT_RESPONDER_PROMPT,
 )
-
 from local_runtime_autofixer.autofixer import LocalIncidentResponder
+from local_runtime_autofixer.utils.custom_exceptions import IncidentException
+from local_runtime_autofixer.utils.incident_handler import BaseIncidentHandler
 
 
 class DummyIncidentModel:
@@ -136,7 +135,6 @@ def clear_env(monkeypatch):
 
 
 def test_auto_fix_sync_success(tmp_path, monkeypatch):
-
     handler = DummyIncidentHandler()
 
     dummy_fixer = DummyAgent("```python\ndef buggy():\n    return 42\n```")
@@ -144,13 +142,11 @@ def test_auto_fix_sync_success(tmp_path, monkeypatch):
 
     class DummyAgentFactory(AgentFactory):
         def __init__(self):
-
             self.fixer_agent = dummy_fixer
             self.guardian_agent = dummy_guardian
 
     class TestResponder(LocalIncidentResponder):
         def __init__(self):
-
             super().__init__(
                 incident_handler=handler, agent_factory=DummyAgentFactory()
             )
@@ -164,7 +160,6 @@ def test_auto_fix_sync_success(tmp_path, monkeypatch):
             serialized_input_type: str,
             serialized_output_type: str,
         ) -> DummyIncidentModel:
-
             return handler.make_incident(
                 func,
                 "/fake/path/module.py",
@@ -181,7 +176,6 @@ def test_auto_fix_sync_success(tmp_path, monkeypatch):
         async def _execute_fix_in_current_env(
             fixed_code: str, original_func: Any, args: tuple, kwargs: dict
         ) -> Tuple[Any, None]:
-
             return 999, None
 
     responder = TestResponder()
@@ -251,14 +245,12 @@ async def test_auto_fix_async_success(monkeypatch):
         async def _execute_fix_in_current_env(
             fixed_code: str, original_func: Any, args: tuple, kwargs: dict
         ) -> Tuple[Any, None]:
-
             return "patched result", None
 
     responder = TestResponder()
 
     @responder.auto_fix()
     async def buggy_async(x: int):
-
         raise TypeError("dummy async error")
 
     out = await buggy_async(10)
@@ -313,7 +305,6 @@ def test_auto_fix_guardian_reject_raises(monkeypatch):
         async def _execute_fix_in_current_env(
             fixed_code: str, original_func: Any, args: tuple, kwargs: dict
         ) -> Tuple[Any, None]:
-
             return None, None
 
     responder = TestResponder()

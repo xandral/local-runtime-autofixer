@@ -1,12 +1,12 @@
-import os
-import pytest
 from enum import Enum
 
+import pytest
+
 from local_runtime_autofixer.agents.agents_factory import (
-    ModelConfig,
-    ModelProvider,
     AgentFactory,
     LLMAgentWrapper,
+    ModelConfig,
+    ModelProvider,
 )
 
 # ------------------------------------------------------------------------------

@@ -1,7 +1,9 @@
+import asyncio
+
+from pydantic import BaseModel
+
 from local_runtime_autofixer.autofixer import LocalIncidentResponder
 from local_runtime_autofixer.utils.incident_handler import BaseIncidentHandler
-import asyncio
-from pydantic import BaseModel
 
 incindent_handler = BaseIncidentHandler()
 

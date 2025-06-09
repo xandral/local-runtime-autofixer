@@ -235,5 +235,3 @@ def faulty(a, b):
 
 faulty(2,3)
 ```
-
-
